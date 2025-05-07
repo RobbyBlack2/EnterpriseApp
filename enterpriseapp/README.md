@@ -1,6 +1,7 @@
-# EnterpriseApp
+# enterpriseapp
 
-Checkin Enterprise App
+A new Flutter project.
+
 lib/
 ├── app/
 │   ├── app.dart                # Root MaterialApp
