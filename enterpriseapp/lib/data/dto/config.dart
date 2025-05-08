@@ -15,7 +15,7 @@ class ConfigDTO {
   final String? reasonScreenTitle;
   final String? altReasonScreenTitle;
   final String? thankyoutitle;
-  final String? thankyoumessage;
+  final String? thankyoumsg;
   final List<Map<String, dynamic>> altreasons;
   final List<Map<String, dynamic>> reasons;
   final String? askqtext1;
@@ -31,7 +31,7 @@ class ConfigDTO {
   final String? opentimes;
   final String? altlanguage;
   final String? altthankyoutitle;
-  final String? altthankyoumessage;
+  final String? altthankyoumsg;
 
   ConfigDTO({
     required this.sitetitle,
@@ -46,7 +46,7 @@ class ConfigDTO {
     required this.reasonScreenTitle,
     required this.altReasonScreenTitle,
     required this.thankyoutitle,
-    required this.thankyoumessage,
+    required this.thankyoumsg,
     required this.reasons,
     required this.altreasons,
     required this.askqtext1,
@@ -62,7 +62,7 @@ class ConfigDTO {
     required this.opentimes,
     required this.altlanguage,
     required this.altthankyoutitle,
-    required this.altthankyoumessage,
+    required this.altthankyoumsg,
   });
 
   factory ConfigDTO.fromJson(Map<String, dynamic> json) {
@@ -108,8 +108,8 @@ class ConfigDTO {
       altqyn1: json['altqyn1'] as String?,
       altqyn2: json['altqyn2'] as String?,
       reasonScreenTitle: json['reasonScreenTitle'] as String?,
-      altReasonScreenTitle: json['altReasonScreenTitle'] as String?,
-      thankyoumessage: json['thankyoumessage'] as String?,
+      altReasonScreenTitle: json['altreasonScreenTitle'] as String?,
+      thankyoumsg: json['thankyoumsg'] as String?,
       thankyoutitle: json['thankyoutitle'] as String?,
       reasons: reasons,
       altreasons: altreasons,
@@ -126,7 +126,7 @@ class ConfigDTO {
       opentimes: json['opentimes'] as String?,
       altlanguage: json['altlanguage'] as String?,
       altthankyoutitle: json['altthankyoutitle'] as String?,
-      altthankyoumessage: json['altthankyoumessage'] as String?,
+      altthankyoumsg: json['altthankyoumsg'] as String?,
     );
   }
 
@@ -183,9 +183,9 @@ class ConfigDTO {
       qreason: reasonScreenTitle,
       altqreason: altReasonScreenTitle,
       thankYouTitle: thankyoutitle,
-      thankYouMessage: thankyoumessage,
+      thankYouMessage: thankyoumsg,
       altThankYouTitle: altthankyoutitle,
-      altThankYouMessage: altthankyoumessage,
+      altThankYouMessage: altthankyoumsg,
       reasons: reasonList,
       altreasons: altreasonList,
       qfname: qname,

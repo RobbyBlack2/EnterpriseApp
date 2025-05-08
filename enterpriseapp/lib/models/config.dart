@@ -129,6 +129,8 @@ class Config {
       'altqreason': altqreason,
       'thankYouTitle': thankYouTitle,
       'thankYouMessage': thankYouMessage,
+      'altThankYouMessage': altThankYouMessage,
+      'altThankYouTitle': altThankYouTitle,
       'reasons': reasons.map((e) => e.toJson()).toList(),
       'altreasons': altreasons.map((e) => e.toJson()).toList(),
       'qfname': qfname,

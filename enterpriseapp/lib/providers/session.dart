@@ -15,10 +15,11 @@ class SessionProvider extends ChangeNotifier {
     final result = await _sessionService.submitSesison(_session);
     if (result.isSuccess) {
       //play sound on success
-      Audio.playDing();
+      await Audio.playDing();
       _session.clear();
       _error = null;
     } else {
+      _error = result.error;
       _session.clear();
       // _error = result.error ?? 'Unknown error';
     }

@@ -70,15 +70,15 @@ class SubmitScreen extends StatelessWidget {
                     Text(
                       vm.title,
                       style: TextStyle(
-                        fontSize: 70.sp,
+                        fontSize: 90.sp,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 50.h),
+                    SizedBox(height: 60.h),
                     Text(
                       vm.subtitle,
-                      style: TextStyle(fontSize: 30.sp),
+                      style: TextStyle(fontSize: 40.sp),
                       textAlign: TextAlign.center,
                     ),
                   ],

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class ApiService {
@@ -25,17 +26,26 @@ class ApiService {
             return ApiResult.success({});
           }
           final jsonData = json.decode(response.body) as Map<String, dynamic>;
-          return ApiResult.success(jsonData);
+          return ApiResult.success(jsonData, statusCode: response.statusCode);
         } catch (e) {
           return ApiResult.success({});
         }
       } else {
+        //error will be overriten or def to error
         return ApiResult.error(
-          'Error ${response.statusCode}: ${response.reasonPhrase}',
+          'Unknown Error ${response.statusCode}',
+          statusCode: response.statusCode,
         );
       }
+    } on SocketException {
+      return ApiResult.error(
+        'Error: No Internet Connection or Invalid Domain',
+        statusCode: null,
+      );
+    } on FormatException {
+      return ApiResult.error('Invalid Domain Entered', statusCode: null);
     } catch (e) {
-      return ApiResult.error('Failed to connect to the server: $e');
+      return ApiResult.error('Unknown error occurred ', statusCode: null);
     }
   }
 }
@@ -44,17 +54,16 @@ class ApiService {
 class ApiResult<T> {
   final T? data;
   final String? error;
+  final int? statusCode;
 
-  ApiResult({this.data, this.error});
+  ApiResult({this.data, this.error, this.statusCode});
 
-  // Factory for success
-  factory ApiResult.success(T data) {
-    return ApiResult(data: data);
+  factory ApiResult.success(T data, {int? statusCode}) {
+    return ApiResult(data: data, statusCode: statusCode);
   }
 
-  // Factory for error
-  factory ApiResult.error(String error) {
-    return ApiResult(error: error);
+  factory ApiResult.error(String error, {int? statusCode}) {
+    return ApiResult(error: error, statusCode: statusCode);
   }
 
   bool get isSuccess => data != null;

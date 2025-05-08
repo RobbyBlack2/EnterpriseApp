@@ -1,6 +1,5 @@
 import 'package:enterpriseapp/core/constants/constants.dart';
 import 'package:enterpriseapp/main.dart';
-
 import 'package:enterpriseapp/providers/config.dart';
 import 'package:enterpriseapp/providers/settings.dart';
 import 'package:enterpriseapp/services/api.dart';
@@ -12,9 +11,8 @@ import 'package:flutter/material.dart';
 /// so this VM can call it to reload the app theme.
 
 class ConfigVM extends ChangeNotifier {
-  late final ConfigService _configService;
-  final ConfigProvider _configProvider;
-  late final SettingsProvider _settingsProvider;
+  late ConfigProvider _configProvider;
+  late SettingsProvider _settingsProvider;
   final apiService = ApiService(baseUrl: Constants.baseUrl);
   late final ConfigService configService = ConfigService(apiService);
   final LocalStorage _localStorage = LocalStorage();
@@ -64,15 +62,25 @@ class ConfigVM extends ChangeNotifier {
 
   VoidCallback? onLoginSuccess;
 
-  ConfigVM(this._configProvider, this._settingsProvider) {
+  ConfigVM() {
     _setFields();
     loadSelectedColor();
+  }
+
+  void updateProviders(
+    ConfigProvider configProvider,
+    SettingsProvider settingsProvider,
+  ) {
+    _configProvider = configProvider;
+    _settingsProvider = settingsProvider;
+    notifyListeners();
   }
 
   Future<void> _setFields() async {
     systemIdController.text = await _localStorage.getSystemid() ?? '';
     passwordController.text = await _localStorage.getPassword() ?? '';
     urlController.text = await _localStorage.getApiUrl() ?? '';
+    _error = _configProvider.error;
     notifyListeners();
   }
 
@@ -80,7 +88,7 @@ class ConfigVM extends ChangeNotifier {
   /// Pass the BuildContext from the widget so we can find the root state.
   void setSelectedColor(Color color, BuildContext context) {
     _selectedColor = color;
-    _localStorage.setSeedColor(color.toARGB32()); // Use .value, not .toARGB32()
+    _localStorage.setSeedColor(color.toARGB32());
     notifyListeners();
 
     // Reload app theme if possible
@@ -120,7 +128,7 @@ class ConfigVM extends ChangeNotifier {
     }
   }
 
-  //System Dropdwon in ui
+  //System Dropdown in UI
   void setSystem(String? value) {
     _system = value;
     notifyListeners();

@@ -34,8 +34,6 @@ class SubmitVM extends ChangeNotifier {
   }
 
   void _setTitle() async {
-    await _submitSession();
-
     String? title;
     String? subtitle;
     switch (sessionProvider.session.lang) {
@@ -51,8 +49,9 @@ class SubmitVM extends ChangeNotifier {
         title = configProvider.config!.thankYouTitle;
         subtitle = configProvider.config!.thankYouMessage;
     }
-    _title = title ?? 'Thank You!';
-    _subtitle = subtitle ?? 'Please Have a Seat';
+    _title = title ?? 'Thank You!22';
+    _subtitle = subtitle ?? 'Please Have a Seat2';
+    await _submitSession();
     notifyListeners();
   }
 

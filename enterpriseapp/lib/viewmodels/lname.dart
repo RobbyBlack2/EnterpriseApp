@@ -38,7 +38,7 @@ class LastNameVM extends ChangeNotifier {
 
     switch (sessionProvider.session.lang) {
       case 'en':
-        title = 'Please Enter Your Last Name';
+        title = 'Enter Your Last Name';
 
         break;
       case 'es':
@@ -46,7 +46,7 @@ class LastNameVM extends ChangeNotifier {
 
         break;
       default:
-        title = 'Please Enter Your Last Name';
+        title = 'Enter Your Last Name';
     }
     _title = title;
   }
@@ -72,6 +72,7 @@ class LastNameVM extends ChangeNotifier {
 
   // Update the TextEditingController
   void _updateText(String newText) {
+    if (newText.length > 40) return;
     nameController.value = nameController.value.copyWith(
       text: newText,
       selection: TextSelection.collapsed(offset: newText.length),

@@ -74,6 +74,7 @@ class FirstNameScreen extends StatelessWidget {
                         children: [
                           TextField(
                             controller: vm.nameController,
+
                             readOnly: true,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),

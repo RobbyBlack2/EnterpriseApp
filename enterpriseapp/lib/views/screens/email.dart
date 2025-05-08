@@ -1,6 +1,6 @@
 import 'package:enterpriseapp/providers/config.dart';
 import 'package:enterpriseapp/viewmodels/email.dart';
-import 'package:enterpriseapp/views/widgets/keybaord.dart';
+import 'package:enterpriseapp/views/widgets/fullkeyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +63,7 @@ class EmailScreen extends StatelessWidget {
                         children: [
                           TextField(
                             controller: vm.nameController,
+
                             readOnly: true,
                             decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -80,7 +81,9 @@ class EmailScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 10.h),
-                          Expanded(child: Keyboard(onKeyPress: vm.onKeyPress)),
+                          Expanded(
+                            child: FullKeyboard(onKeyPress: vm.onKeyPress),
+                          ),
                         ],
                       ),
                     ),

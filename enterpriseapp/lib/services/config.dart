@@ -29,9 +29,16 @@ class ConfigService {
         Config? config = dto.toModel();
         return ApiResult.success(config);
       } catch (e) {
-        return ApiResult.error('Failed to process the response: $e');
+        return ApiResult.error('Invalid Response Format');
       }
     } else {
+      if (result.statusCode == 401) {
+        return ApiResult.error('Invalid System ID or Password');
+      } else if (result.statusCode == 400) {
+        return ApiResult.error('Invalid Request');
+      } else if (result.statusCode == 500) {
+        return ApiResult.error('Unknown Server Error, Please Try Again');
+      }
       return ApiResult.error(result.error!);
     }
   }

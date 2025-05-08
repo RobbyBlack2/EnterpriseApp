@@ -30,6 +30,13 @@ class SessionService {
     if (result.isSuccess) {
       return ApiResult.success(null);
     } else {
+      if (result.statusCode == 401) {
+        return ApiResult.error('Invalid System ID or Password');
+      } else if (result.statusCode == 400) {
+        return ApiResult.error('Invalid Request');
+      } else if (result.statusCode == 500) {
+        return ApiResult.error('Unknown Server Error, Please Try Again');
+      }
       return ApiResult.error(result.error!);
     }
   }

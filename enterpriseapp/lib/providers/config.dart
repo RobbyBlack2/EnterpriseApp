@@ -52,7 +52,7 @@ class ConfigProvider extends ChangeNotifier {
       _error = null;
       setConfig(result.data);
       //play sound on success
-      Audio.playDing();
+      await Audio.playDing();
       notifyListeners();
       //ui naviagtes on submitted
     } else {
@@ -76,7 +76,7 @@ class ConfigProvider extends ChangeNotifier {
       _error = null;
       setConfig(result.data);
       //play sound on success
-      Audio.playDing();
+      await Audio.playDing();
       notifyListeners();
       //ui naviagtes on submitted
     } else {

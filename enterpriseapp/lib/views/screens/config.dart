@@ -9,13 +9,14 @@ class ConfigScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) {
-        final configVM = ConfigVM(
-          context.read<ConfigProvider>(),
-          context.read<SettingsProvider>(),
-        );
-
+    return ChangeNotifierProxyProvider2<
+      ConfigProvider,
+      SettingsProvider,
+      ConfigVM
+    >(
+      create: (_) => ConfigVM(),
+      update: (_, configProvider, settingsProvider, configVM) {
+        configVM!.updateProviders(configProvider, settingsProvider);
         configVM.onLoginSuccess = () {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             Navigator.pushNamedAndRemoveUntil(
@@ -25,9 +26,9 @@ class ConfigScreen extends StatelessWidget {
             );
           });
         };
-
         return configVM;
       },
+
       child: Scaffold(
         appBar: AppBar(title: const Text("Configuration")),
         body: SafeArea(

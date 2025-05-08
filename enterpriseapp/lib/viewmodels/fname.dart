@@ -46,7 +46,7 @@ class FirstNameVM extends ChangeNotifier {
     String? subtitle;
     switch (sessionProvider.session.lang) {
       case 'en':
-        title = configProvider.config!.qfname ?? 'Please Enter Your First Name';
+        title = configProvider.config!.qfname ?? 'Enter Your First Name';
         subtitle = configProvider.config!.qfname;
 
         break;
@@ -60,7 +60,7 @@ class FirstNameVM extends ChangeNotifier {
     }
     _siteTitle = configProvider.config!.siteTitle ?? '';
     _title = title ?? 'Please Sign In';
-    _subtitle = subtitle ?? 'Please Enter Your First Name';
+    _subtitle = subtitle ?? 'Enter Your First Name';
   }
 
   // Handle key presses
@@ -84,6 +84,7 @@ class FirstNameVM extends ChangeNotifier {
 
   // Update the TextEditingController
   void _updateText(String newText) {
+    if (newText.length > 40) return;
     nameController.value = nameController.value.copyWith(
       text: newText,
       selection: TextSelection.collapsed(offset: newText.length),

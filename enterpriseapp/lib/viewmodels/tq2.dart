@@ -70,6 +70,7 @@ class TQ2VM extends ChangeNotifier {
 
   // Update the TextEditingController
   void _updateText(String newText) {
+    if (newText.length > 40) return;
     nameController.value = nameController.value.copyWith(
       text: newText,
       selection: TextSelection.collapsed(offset: newText.length),
