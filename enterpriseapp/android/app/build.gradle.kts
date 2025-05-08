@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -6,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.checkin.enterpriseapp"
+    namespace = "com.checkin.enterprise"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -21,7 +23,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.checkin.enterpriseapp"
+        applicationId = "com.checkin.enterprise"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -30,29 +32,32 @@ android {
         versionName = flutter.versionName
     }
 
-    def keystorePropertiesFile = rootProject.file("gradle.properties")
-    def keystoreProperties = new Properties()
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    val keystorePropertiesFile = rootProject.file("gradle.properties")
+    val keystoreProperties = Properties()
+    keystoreProperties.load(keystorePropertiesFile.inputStream())
 
     signingConfigs {
-        release {
-            storeFile file(keystoreProperties['MYAPP_RELEASE_STORE_FILE'])
-            storePassword keystoreProperties['MYAPP_RELEASE_STORE_PASSWORD']
-            keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
-            keyPassword keystoreProperties['MYAPP_RELEASE_KEY_PASSWORD']
+        create("release") {
+            storeFile = file(keystoreProperties.getProperty("MYAPP_RELEASE_STORE_FILE"))
+            storePassword = keystoreProperties.getProperty("MYAPP_RELEASE_STORE_PASSWORD")
+            keyAlias = keystoreProperties.getProperty("MYAPP_RELEASE_KEY_ALIAS")
+            keyPassword = keystoreProperties.getProperty("MYAPP_RELEASE_KEY_PASSWORD")
         }
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             // Disable debugging for release builds
-            debuggable false
+            isDebuggable = false
             // Enable code shrinking, obfuscation, and optimization for release builds
-            minifyEnabled true
+            isMinifyEnabled = true
             // Use ProGuard to shrink and obfuscate your code
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             // Use the release signing configuration
-            signingConfig signingConfigs.release
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

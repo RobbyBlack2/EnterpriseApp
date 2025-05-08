@@ -1,4 +1,4 @@
-package com.checkin.enterpriseapp
+package com.checkin.enterprise
 
 import io.flutter.embedding.android.FlutterActivity
 
