@@ -53,7 +53,7 @@ class SubReasonVM extends ChangeNotifier {
           break;
         }
         subReasons = foundReason.subReasons;
-        title = configProvider.config!.qreason;
+        title = 'Choose One';
         break;
       case 'es':
         final foundReason = configProvider.config!.altreasons.firstWhereOrNull(
@@ -64,7 +64,7 @@ class SubReasonVM extends ChangeNotifier {
           break;
         }
         subReasons = foundReason.subReasons;
-        title = configProvider.config!.qreason;
+        title = 'Elige uno';
         break;
       default:
         subReasons = [];

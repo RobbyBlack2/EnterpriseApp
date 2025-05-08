@@ -1,4 +1,4 @@
-package com.example.enterpriseapp
+package com.checkin.enterpriseapp
 
 import io.flutter.embedding.android.FlutterActivity
 

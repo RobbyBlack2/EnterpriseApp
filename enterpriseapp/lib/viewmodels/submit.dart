@@ -44,11 +44,11 @@ class SubmitVM extends ChangeNotifier {
         subtitle = configProvider.config!.thankYouMessage;
         break;
       case 'es':
-        title = configProvider.config!.altqtext1;
-        subtitle = configProvider.config!.thankYouMessage;
+        title = configProvider.config!.altThankYouTitle;
+        subtitle = configProvider.config!.altThankYouMessage;
         break;
       default:
-        title = configProvider.config!.qtext1;
+        title = configProvider.config!.thankYouTitle;
         subtitle = configProvider.config!.thankYouMessage;
     }
     _title = title ?? 'Thank You!';
@@ -58,6 +58,7 @@ class SubmitVM extends ChangeNotifier {
 
   Future<void> _submitSession() async {
     await sessionProvider.submitSession();
+    //if there is a error dispaly the message
     if (sessionProvider.error != null) {
       errorMessage = sessionProvider.error;
       _loading = false;

@@ -13,6 +13,7 @@ class ConfigDTO {
   final String? altqyn1;
   final String? altqyn2;
   final String? reasonScreenTitle;
+  final String? altReasonScreenTitle;
   final String? thankyoutitle;
   final String? thankyoumessage;
   final List<Map<String, dynamic>> altreasons;
@@ -29,6 +30,8 @@ class ConfigDTO {
   final String? altqname;
   final String? opentimes;
   final String? altlanguage;
+  final String? altthankyoutitle;
+  final String? altthankyoumessage;
 
   ConfigDTO({
     required this.sitetitle,
@@ -41,6 +44,7 @@ class ConfigDTO {
     required this.altqyn1,
     required this.altqyn2,
     required this.reasonScreenTitle,
+    required this.altReasonScreenTitle,
     required this.thankyoutitle,
     required this.thankyoumessage,
     required this.reasons,
@@ -57,6 +61,8 @@ class ConfigDTO {
     required this.altqname,
     required this.opentimes,
     required this.altlanguage,
+    required this.altthankyoutitle,
+    required this.altthankyoumessage,
   });
 
   factory ConfigDTO.fromJson(Map<String, dynamic> json) {
@@ -102,6 +108,7 @@ class ConfigDTO {
       altqyn1: json['altqyn1'] as String?,
       altqyn2: json['altqyn2'] as String?,
       reasonScreenTitle: json['reasonScreenTitle'] as String?,
+      altReasonScreenTitle: json['altReasonScreenTitle'] as String?,
       thankyoumessage: json['thankyoumessage'] as String?,
       thankyoutitle: json['thankyoutitle'] as String?,
       reasons: reasons,
@@ -118,6 +125,8 @@ class ConfigDTO {
       altqname: json['altqname'] as String?,
       opentimes: json['opentimes'] as String?,
       altlanguage: json['altlanguage'] as String?,
+      altthankyoutitle: json['altthankyoutitle'] as String?,
+      altthankyoumessage: json['altthankyoumessage'] as String?,
     );
   }
 
@@ -172,8 +181,11 @@ class ConfigDTO {
       altqyn1: altqyn1,
       altqyn2: altqyn2,
       qreason: reasonScreenTitle,
+      altqreason: altReasonScreenTitle,
       thankYouTitle: thankyoutitle,
       thankYouMessage: thankyoumessage,
+      altThankYouTitle: altthankyoutitle,
+      altThankYouMessage: altthankyoumessage,
       reasons: reasonList,
       altreasons: altreasonList,
       qfname: qname,

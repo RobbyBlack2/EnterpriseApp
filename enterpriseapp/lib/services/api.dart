@@ -18,8 +18,17 @@ class ApiService {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final jsonData = json.decode(response.body) as Map<String, dynamic>;
-        return ApiResult.success(jsonData);
+        try {
+          //api currently do not alwasy send a json back dont want to cause a failure error
+          //when the response was still successfull
+          if (response.body.isEmpty) {
+            return ApiResult.success({});
+          }
+          final jsonData = json.decode(response.body) as Map<String, dynamic>;
+          return ApiResult.success(jsonData);
+        } catch (e) {
+          return ApiResult.success({});
+        }
       } else {
         return ApiResult.error(
           'Error ${response.statusCode}: ${response.reasonPhrase}',

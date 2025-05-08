@@ -12,7 +12,10 @@ class Config {
   final String? altqyn2;
   final String? thankYouTitle;
   final String? thankYouMessage;
+  final String? altThankYouTitle;
+  final String? altThankYouMessage;
   final String? qreason;
+  final String? altqreason;
   final List<Reason> reasons;
   final List<Reason> altreasons;
   final String? qfname;
@@ -42,8 +45,11 @@ class Config {
     required this.altqyn1,
     required this.altqyn2,
     required this.qreason,
+    required this.altqreason,
     required this.thankYouTitle,
     required this.thankYouMessage,
+    required this.altThankYouTitle,
+    required this.altThankYouMessage,
     required this.reasons,
     required this.altreasons,
     required this.qfname,
@@ -74,8 +80,12 @@ class Config {
       altqyn1: json['altqyn1'] as String?,
       altqyn2: json['altqyn2'] as String?,
       qreason: json['qreason'] as String?,
+      altqreason: json['altqreason'] as String?,
       thankYouTitle: json['thankYouTitle'] as String?,
       thankYouMessage: json['thankYouMessage'] as String?,
+
+      altThankYouTitle: json['altThankYouTitle'] as String?,
+      altThankYouMessage: json['altThankYouMessage'] as String?,
       altlanguage: json['altlanguage'] as String?,
       reasons:
           (json['reasons'] as List<dynamic>? ?? [])
@@ -116,6 +126,7 @@ class Config {
       'altqyn1': altqyn1,
       'altqyn2': altqyn2,
       'qreason': qreason,
+      'altqreason': altqreason,
       'thankYouTitle': thankYouTitle,
       'thankYouMessage': thankYouMessage,
       'reasons': reasons.map((e) => e.toJson()).toList(),

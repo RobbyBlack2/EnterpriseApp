@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:enterpriseapp/core/constants/constants.dart';
+import 'package:enterpriseapp/core/constants/utils/sound.dart';
 import 'package:enterpriseapp/models/config.dart';
 import 'package:enterpriseapp/services/api.dart';
 import 'package:enterpriseapp/services/config.dart';
@@ -49,6 +51,8 @@ class ConfigProvider extends ChangeNotifier {
 
       _error = null;
       setConfig(result.data);
+      //play sound on success
+      Audio.playDing();
       notifyListeners();
       //ui naviagtes on submitted
     } else {
@@ -71,6 +75,8 @@ class ConfigProvider extends ChangeNotifier {
     if (result.isSuccess) {
       _error = null;
       setConfig(result.data);
+      //play sound on success
+      Audio.playDing();
       notifyListeners();
       //ui naviagtes on submitted
     } else {

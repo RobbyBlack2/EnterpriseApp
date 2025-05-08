@@ -1,3 +1,4 @@
+import 'package:enterpriseapp/core/constants/utils/sound.dart';
 import 'package:enterpriseapp/models/session.dart';
 import 'package:enterpriseapp/services/session.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +14,8 @@ class SessionProvider extends ChangeNotifier {
   Future<void> submitSession() async {
     final result = await _sessionService.submitSesison(_session);
     if (result.isSuccess) {
+      //play sound on success
+      Audio.playDing();
       _session.clear();
       _error = null;
     } else {

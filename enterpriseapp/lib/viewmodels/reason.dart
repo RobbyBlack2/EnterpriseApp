@@ -47,7 +47,7 @@ class ReasonVM extends ChangeNotifier {
         break;
       case 'es':
         reasons = configProvider.config!.altreasons;
-        title = configProvider.config!.qreason;
+        title = configProvider.config!.altqreason;
         break;
       default:
         reasons = configProvider.config!.reasons;

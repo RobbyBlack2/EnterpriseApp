@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.enterpriseapp"
+    namespace = "com.checkin.enterpriseapp"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.enterpriseapp"
+        applicationId = "com.checkin.enterpriseapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -30,11 +30,29 @@ android {
         versionName = flutter.versionName
     }
 
+    def keystorePropertiesFile = rootProject.file("gradle.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['MYAPP_RELEASE_STORE_FILE'])
+            storePassword keystoreProperties['MYAPP_RELEASE_STORE_PASSWORD']
+            keyAlias keystoreProperties['MYAPP_RELEASE_KEY_ALIAS']
+            keyPassword keystoreProperties['MYAPP_RELEASE_KEY_PASSWORD']
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Disable debugging for release builds
+            debuggable false
+            // Enable code shrinking, obfuscation, and optimization for release builds
+            minifyEnabled true
+            // Use ProGuard to shrink and obfuscate your code
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Use the release signing configuration
+            signingConfig signingConfigs.release
         }
     }
 }

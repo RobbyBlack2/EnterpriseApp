@@ -24,6 +24,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/ding.mp3
   fonts:
     - family: VarelaRound
       fonts:
