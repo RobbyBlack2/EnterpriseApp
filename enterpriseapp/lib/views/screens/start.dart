@@ -39,152 +39,165 @@ class StartScreen extends StatelessWidget {
       },
       child: Consumer<StartVM>(
         builder: (context, vm, child) {
+          // Hardcoded background image URL
+          const backgroundImageUrl =
+              'https://images-cdn.ispot.tv/ad/7NIO/default-large.jpg';
+
+          Widget content;
           if (!vm.askAltLang) {
             // Tap anywhere to sign in, with title and subtitle
-            return GestureDetector(
+            content = GestureDetector(
               behavior: HitTestBehavior.opaque,
-
               onTap: () => vm.submitScreen('en'),
-              child: Scaffold(
-                body: Stack(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: 10.h,
+                  bottom: 60.h,
+                  left: 16.w,
+                  right: 16.w,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
-                        top: 10.h,
-                        bottom: 60.h,
-                        left: 16.w,
-                        right: 16.w,
-                      ),
+                      padding: EdgeInsets.only(bottom: 100.h),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 100.h),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Please Sign In',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 90.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 10.h),
-                              ],
+                          Text(
+                            'Please Sign In',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 90.sp,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 0.7.sw,
-                                margin: EdgeInsets.symmetric(horizontal: 20.w),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 20.h,
-                                    ), // Increase vertical padding
-                                  ),
-                                  onPressed: () => vm.submitScreen('en'),
-                                  child: Text(
-                                    'Sign In',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 60.sp,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          SizedBox(height: 10.h),
                         ],
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 0.7.sw,
+                          margin: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 20.h),
+                            ),
+                            onPressed: () => vm.submitScreen('en'),
+                            child: Text(
+                              'Sign In',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 60.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             );
-          }
-          // Language selection buttons
-          return Scaffold(
-            body: Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 10.h,
-                    bottom: 60.h,
-                    left: 16.w,
-                    right: 16.w,
+          } else {
+            // Language selection buttons
+            content = Padding(
+              padding: EdgeInsets.only(
+                top: 10.h,
+                bottom: 60.h,
+                left: 16.w,
+                right: 16.w,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 100.h),
+                    child: Column(
+                      children: [
+                        Text(
+                          '',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 90.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                      ],
+                    ),
                   ),
-                  child: Column(
+                  Spacer(),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 100.h),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Please Sign In',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 90.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      Container(
+                        width: 0.4.sw,
+                        margin: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
+                          ),
+                          onPressed: () => vm.submitScreen('en'),
+                          child: Text(
+                            'English',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 65.sp,
+                              fontWeight: FontWeight.w500,
                             ),
-                            SizedBox(height: 10.h),
-                          ],
+                          ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 0.4.sw,
-                            margin: EdgeInsets.symmetric(horizontal: 20.w),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 20.h,
-                                ), // Increase vertical padding
-                              ),
-                              onPressed: () => vm.submitScreen('en'),
-                              child: Text(
-                                'English',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 65.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                      Container(
+                        width: 0.4.sw,
+                        margin: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 20.h),
+                          ),
+                          onPressed: () => vm.submitScreen('es'),
+                          child: Text(
+                            'Español',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 65.sp,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Container(
-                            width: 0.4.sw,
-                            margin: EdgeInsets.symmetric(horizontal: 20.w),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 20.h,
-                                ), // Increase vertical padding
-                              ),
-                              onPressed: () => vm.submitScreen('es'),
-                              child: Text(
-                                'Español',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 65.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
+                ],
+              ),
+            );
+          }
+
+          return Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 100,
+              backgroundColor: Theme.of(context).primaryColor,
+              title: const Text(
+                'Please Sign In',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 65,
+                  fontWeight: FontWeight.w500,
                 ),
+              ),
+              //backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            body: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.network(backgroundImageUrl, fit: BoxFit.cover),
+                ),
+                content,
               ],
             ),
           );

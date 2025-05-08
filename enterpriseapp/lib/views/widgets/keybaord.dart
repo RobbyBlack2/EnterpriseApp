@@ -28,7 +28,7 @@ class Keyboard extends StatelessWidget {
               keys.map((key) {
                 return Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(2.w),
+                    padding: EdgeInsets.all(4.w),
                     child: GestureDetector(
                       onPanDown: (details) => onKeyPress(key),
                       child: ElevatedButton(
@@ -55,7 +55,7 @@ class Keyboard extends StatelessWidget {
                                 : Text(
                                   key,
                                   style: TextStyle(
-                                    fontSize: isNumberRow ? 45.sp : 55.sp,
+                                    fontSize: isNumberRow ? 45.sp : 70.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),

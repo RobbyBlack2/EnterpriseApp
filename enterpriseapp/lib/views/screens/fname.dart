@@ -59,7 +59,7 @@ class FirstNameScreen extends StatelessWidget {
                     vm.errorMessage ?? vm.title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 70.sp,
+                      fontSize: 90.sp,
                       fontWeight: FontWeight.w900,
                       color:
                           vm.errorMessage != null ? Colors.red : Colors.black,
@@ -87,7 +87,7 @@ class FirstNameScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                             textAlignVertical: TextAlignVertical.center,
                             style: TextStyle(
-                              fontSize: 60.sp,
+                              fontSize: 80.sp,
                               fontWeight: FontWeight.w200,
                             ),
                           ),
